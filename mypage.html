@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPA Sample</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    /* --- ページの基礎 --- */
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    /* --- P1 --- */
+    #page1 {
+      background: url('aaa.png') center/cover no-repeat;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .white-box {
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      width: 200px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* --- P2 --- */
+    #page2 {
+      background: #f6f6f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+    }
+  .bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    #page1 {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .white-box {
+      position: absolute;
+      top: 70%;
+      left: 25%;
+      width: 170px;
+      height: 70px;
+      background: transparent;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+.name-box {
+      position: absolute;
+      top: 13.3%;
+      left: 17%;
+      width: 200px;
+      height: 20px;
+      font-size: 18px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      z-index: 3;
+    }
+
+    .time-box {
+      position: absolute;
+      bottom: 45%;
+      left: 16%;
+      font-size: 20px;
+      font-weight: 500;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 8px;
+      z-index: 3;
+    }
+
+</style>
+</head>
+<body>
+  <!-- P1 -->
+  <div id="page1" class="page active">
+    <img src="aaa.png" class="bg-img" />
+    <div id="toP2" class="white-box"></div>
+
+    <!-- 名前入力 -->
+    <input type="text" id="nameInput" placeholder="" class="name-box" />
+
+    <!-- 時刻表示 -->
+    <div id="timeDisplay" class="time-box"></div>
+  </div>
+
+  <!-- P2 -->
+  <div id="page2" class="page">
+    P2（仕様は後で追加）
+  </div>
+
+  <script>
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+
+    document.getElementById('toP2').addEventListener('click', () => {
+      page1.classList.remove('active');
+      page2.classList.add('active');
+    });
+    // 時刻のリアルタイム更新
+    function updateTime() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById('timeDisplay').textContent = `${y}/${m}/${d} ${hh}:${mm}:${ss}`;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+</body>
+</html>
