@@ -81,8 +81,8 @@
 
     .white-box {
       position: absolute;
-      top: 70%;
-      left: 25%;
+      top: 72%;
+      left: 27%;
       width: 170px;
       height: 70px;
       background: transparent;
@@ -98,7 +98,7 @@
 
 .name-box {
       position: absolute;
-      top: 13.3%;
+      top: 24.5%;
       left: 17%;
       width: 200px;
       height: 20px;
@@ -111,10 +111,10 @@
 
     .time-box {
       position: absolute;
-      bottom: 45%;
+      bottom: 41.7%;
       left: 16%;
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 600;
       background: transparent;
       padding: 6px 12px;
       border-radius: 8px;
@@ -165,34 +165,6 @@
     setInterval(updateTime, 1000);
     updateTime();
 
-    function positionElements() {
-  const img = document.querySelector(".bg-img");
-
-  // 画像が表示されているサイズ（実寸）を取得
-  const rect = img.getBoundingClientRect();
-
-  // 画像内の位置（％で指定） → 自分の好きな値に変えられる
-  const pos = {
-    name:  { x: 0.19, y: 0.245 },
-    time:  { x: 0.17, y: 0.54 },
-    box:   { x: 0.27, y: 0.72 }
-  };
-
-  // 各要素を画像内の相対位置で配置
-  document.querySelector(".name-box").style.left = (rect.left + rect.width * pos.name.x) + "px";
-  document.querySelector(".name-box").style.top  = (rect.top  + rect.height * pos.name.y) + "px";
-
-  document.querySelector(".time-box").style.left = (rect.left + rect.width * pos.time.x) + "px";
-  document.querySelector(".time-box").style.top  = (rect.top  + rect.height * pos.time.y) + "px";
-
-  const box = document.querySelector(".white-box");
-  box.style.left = (rect.left + rect.width * pos.box.x) + "px";
-  box.style.top  = (rect.top  + rect.height * pos.box.y) + "px";
-}
-
-// ページ読み込み時 & リサイズ時に常に再計算
-window.addEventListener("load", positionElements);
-window.addEventListener("resize", positionElements);
 
   </script>
 </body>
